@@ -38,8 +38,9 @@ void CLegitBot::Aimbot()
 	std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
 	// aimbot key
-	if (!GetAsyncKeyState(VK_RBUTTON)) // @TODO : Custom Hotkey
+	if (!GetAsyncKeyState(C::Get<int>(Vars.bAimbotKey)))
 		return;
+
 
 	// get local player
 	const auto& localPlayer = memory.Read<std::uintptr_t>(client + offset::dwLocalPlayer);
@@ -165,7 +166,7 @@ void CLegitBot::TriggerBot() {
 	std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
 	// skip if trigger kry is not down
-	if (!GetAsyncKeyState(VK_SHIFT)) // @TODO : Custom Hotkey
+	if (!GetAsyncKeyState(C::Get<int>(Vars.bTriggerKey)))
 		return;
 
 	const auto& localPlayer = memory.Read<std::uintptr_t>(client + offset::dwLocalPlayer);

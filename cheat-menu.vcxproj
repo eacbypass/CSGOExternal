@@ -148,6 +148,7 @@
     <ClInclude Include="Header Files\core\cfg.h" />
     <ClInclude Include="Header Files\core\fnv1a.h" />
     <ClInclude Include="Header Files\core\includes.h" />
+    <ClInclude Include="Header Files\core\UI.h" />
     <ClInclude Include="Header Files\core\variables.h" />
     <ClInclude Include="Header Files\core\vector.h" />
     <ClInclude Include="Header Files\core\xorstr.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cheat\core\UI.cpp" />
     <ClCompile Include="cheat\features\bhop.cpp" />
     <ClCompile Include="cheat\features\chams.cpp" />
     <ClCompile Include="cheat\features\legitbot.cpp" />

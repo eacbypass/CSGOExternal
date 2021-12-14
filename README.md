@@ -17,7 +17,7 @@ One of the most garbage CS:GO externals with un-optimized & barely working code.
 - [x] Add FOV Changer
 - [ ] Skin Changer of some sort
 - [ ] Add ESP or Glow
-- [ ] Make BHOP more reliable
+- [x] Make BHOP more reliable
 - [ ] Make it Kernel Level
 - [ ] Optimize Cheat
   - [ ] Enable Multi-Threading

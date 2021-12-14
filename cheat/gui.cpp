@@ -5,6 +5,7 @@
 #include "../imgui/imgui.h"
 #include "../imgui/imgui_impl_dx9.h"
 #include "../imgui/imgui_impl_win32.h"
+#include "../Header Files/core/UI.h"
 
 void HelpMarker(const char* desc) {
 	ImGui::TextDisabled("[?]");
@@ -262,10 +263,14 @@ void gui::Render() noexcept
 	if (C::Get<bool>(Vars.bLegitBot)) {
 		ImGui::Checkbox(XorStr("Triggerbot"), &C::Get<bool>(Vars.bTrigger));
 		if (C::Get<bool>(Vars.bTrigger)) {
+			ImGui::SameLine();
+			ImGui::Hotkey(XorStr("##Triggerkey"), &C::Get<int>(Vars.bTriggerKey), ImVec2(120, 22));
 			ImGui::SliderInt(XorStr("Delay [ms]"), &C::Get<int>(Vars.bTriggerDelay), 0, 200);
 		}
 		ImGui::Checkbox(XorStr("Aimbot"), &C::Get<bool>(Vars.bAimbot));
 		if (C::Get<bool>(Vars.bAimbot)) {
+			ImGui::SameLine();
+			ImGui::Hotkey(XorStr("##Aimkey"), &C::Get<int>(Vars.bAimbotKey), ImVec2(120, 22));
 			ImGui::SliderFloat(XorStr("FOV"), &C::Get<float>(Vars.bAimbotFOV), 0.1f, 50);
 			ImGui::SliderFloat(XorStr("Smoothing"), &C::Get<float>(Vars.bAimbotSmoothing), 0.1f, 20);
 		}

@@ -14,12 +14,18 @@ void CBhop::Run()
 	const auto mem = Memory("csgo.exe");
 	const auto client = mem.GetModuleAddress("client.dll");
 
-	const auto localPlayer = mem.Read<std::uintptr_t>(client + offset::dwLocalPlayer);
-
-	const auto localPlayerFlags = mem.Read<std::uintptr_t>(localPlayer + offset::m_fFlags);
-
 	if (GetAsyncKeyState(VK_SPACE))
-		(localPlayerFlags & (1 << 0)) ?
-		mem.Write<std::uintptr_t>(client + offset::dwForceJump, 6):
-		mem.Write<std::uintptr_t>(client + offset::dwForceJump, 4);
+	{
+		DWORD LocPlayer = mem.Read<DWORD>(client + offset::dwLocalPlayer);
+		DWORD fFlags = mem.Read<DWORD>(LocPlayer + offset::m_fFlags);
+
+		if (fFlags == 256) //on-air
+		{
+			mem.Write<int>(client + offset::dwForceJump, 4);
+		}
+		else
+		{
+			mem.Write<int>(client + offset::dwForceJump, 5);
+		}
+	}
 }

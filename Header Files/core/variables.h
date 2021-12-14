@@ -13,11 +13,12 @@ struct tVariables
 
 	// Triggerbot
 	C_ADD_VARIABLE(bool, bTrigger, false);
-	C_ADD_VARIABLE(int, bTriggerKey, 0); // @TODO : Add Trigger Key
+	C_ADD_VARIABLE(int, bTriggerKey, 0);
 	C_ADD_VARIABLE(int, bTriggerDelay, 0);
 
 	// Aimbot
 	C_ADD_VARIABLE(bool, bAimbot, false);
+	C_ADD_VARIABLE(int, bAimbotKey, 1);
 	C_ADD_VARIABLE(float, bAimbotFOV, 5.0f);
 	C_ADD_VARIABLE(float, bAimbotSmoothing, 3.0f);
 
