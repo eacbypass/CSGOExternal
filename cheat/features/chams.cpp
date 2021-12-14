@@ -40,9 +40,9 @@ void CChams::Run()
 		}
 
 		//Model Brightness
-		float brightness = 0.f;
-		const auto _this = static_cast<std::uintptr_t>(engine + offset::model_ambient_min - 0x2c);
-		memory.Write<std::int32_t>(engine + offset::model_ambient_min, *reinterpret_cast<std::uintptr_t*>(&brightness) ^ _this);
+		//float brightness = 0.f;
+		//const auto _this = static_cast<std::uintptr_t>(engine + offset::model_ambient_min - 0x2c);
+		//memory.Write<std::int32_t>(engine + offset::model_ambient_min, *reinterpret_cast<std::uintptr_t*>(&brightness) ^ _this);
 	}
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1));

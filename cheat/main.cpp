@@ -23,11 +23,15 @@ int __stdcall wWinMain(
 	
 	const auto memory = Memory{ "csgo.exe" };
 	const auto client = memory.GetModuleAddress("client.dll");
+	const auto engine = memory.GetModuleAddress("engine.dll");
 
 	std::cout << std::hex << "client.dll -> 0x" << client << std::dec << std::endl;
+	std::cout << std::hex << "engine.dll -> 0x" << engine << std::dec << std::endl;
 	if (!client) {
-		printf("[cheat-menu] Start CSGO");
-		Sleep(-1);
+		if (!engine) {
+			printf("[cheat-menu] Start CSGO");
+			Sleep(-1);
+		}
 	}
 	// create gui
 	gui::CreateHWindow("Cheat Menu", "Cheat Menu Class");
