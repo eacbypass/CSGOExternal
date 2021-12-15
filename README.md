@@ -22,7 +22,7 @@ One of the most garbage CS:GO externals with un-optimized & barely working code.
 - [ ] Optimize Cheat
   - [ ] Enable Multi-Threading
 
-## Contributing
+## ✨ Contributing
 
 Any contributions you make are **greatly appreciated**.
 
