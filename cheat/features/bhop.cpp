@@ -11,8 +11,8 @@
 
 void CBhop::Run()
 {
-	const auto mem = Memory("csgo.exe");
-	const auto client = mem.GetModuleAddress("client.dll");
+	const auto mem = Memory(XorStr("csgo.exe"));
+	const auto client = mem.GetModuleAddress(XorStr("client.dll"));
 
 	if (GetAsyncKeyState(VK_SPACE))
 	{

@@ -7,6 +7,7 @@
 #include "../Header Files/core/includes.h"
 
 void Hook();
+void polymorphic();
 void Render();
 
 int __stdcall wWinMain(
@@ -15,29 +16,31 @@ int __stdcall wWinMain(
 	PWSTR arguments,
 	int commandShow)
 {
+	polymorphic();
 	AllocConsole();
-	freopen("conin$", "r", stdin);
-	freopen("conout$", "w", stdout);
-	freopen("conout$", "w", stderr);
+	freopen(XorStr("conin$"), "r", stdin);
+	freopen(XorStr("conout$"), "w", stdout);
+	freopen(XorStr("conout$"), "w", stderr);
 
 	
-	const auto memory = Memory{ "csgo.exe" };
-	const auto client = memory.GetModuleAddress("client.dll");
-	const auto engine = memory.GetModuleAddress("engine.dll");
+	const auto memory = Memory{ XorStr("csgo.exe") };
+	const auto client = memory.GetModuleAddress(XorStr("client.dll"));
+	const auto engine = memory.GetModuleAddress(XorStr("engine.dll"));
 
-	std::cout << std::hex << "client.dll -> 0x" << client << std::dec << std::endl;
-	std::cout << std::hex << "engine.dll -> 0x" << engine << std::dec << std::endl;
+	std::cout << std::hex << XorStr("client.dll -> 0x") << client << std::dec << std::endl;
+	std::cout << std::hex << XorStr("engine.dll -> 0x") << engine << std::dec << std::endl;
 	if (!client) {
 		if (!engine) {
-			printf("[cheat-menu] Start CSGO");
+			printf(XorStr("[cheat-menu] Start CSGO"));
 			Sleep(-1);
 		}
 	}
+	polymorphic();
 	// create gui
-	gui::CreateHWindow("Cheat Menu", "Cheat Menu Class");
+	gui::CreateHWindow(XorStr("Cheat Menu"), XorStr("Cheat Menu Class"));
 	gui::CreateDevice();
 	gui::CreateImGui();
-	
+	polymorphic();
 	while (gui::exit)
 	{
 		Hook();
@@ -72,3 +75,74 @@ void Hook() {
 	}
 }
 
+
+//
+// "Polymorphic Code" rofl
+//
+void polymorphic() //basic function created by Apxaey that randomly selects a number and writes random assembly instructionss. This is good becuase VAC's main detection method is through known signatures which are just a pattern of bytes. So when we call this function we add assembly and therefore adding random bytes, resulting in a different runtime signature every time the fucntion is called.
+{
+	std::srand(std::time(0)); //generate random seed from your computers time
+
+	int count = 0;
+	for (count; count < 10; count++)
+	{
+		int index = rand() % (2 - 0 + 1) + 0; //loop through 
+
+
+
+		switch (index)
+		{
+
+		case 0:
+
+			__asm __volatile
+			{
+				mov eax, 0
+				add bp, ax
+				mov eax, 0
+				mov ebx, 0
+				mov ax, bp
+				mov bl, 7
+				mul cx
+				_emit 0x90
+
+
+			}
+
+
+
+		case 1:
+
+			_asm
+			{
+				add al, al
+				_emit 0x34
+				_emit 0x35
+				_emit 0x90
+				_emit 0x36
+				_emit 0x37
+				_emit 0x90
+				_emit 0x90
+
+			}
+
+		case 2:
+			__asm __volatile
+			{
+			add    eax, 0;
+			 dec    ecx;
+			 add    eax, 0;
+			 inc    ecx;
+			 inc    edi;
+			 _emit 0xb8
+			 dec    ecx
+			 inc    ecx;
+			 dec    ecx;
+			 inc    ecx;
+			}
+
+
+		}
+
+	}
+}

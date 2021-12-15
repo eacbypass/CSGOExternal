@@ -8,7 +8,7 @@
 #include "../Header Files/core/UI.h"
 
 void HelpMarker(const char* desc) {
-	ImGui::TextDisabled("[?]");
+	ImGui::TextDisabled(XorStr("[?]"));
 	if (ImGui::IsItemHovered()) {
 		ImGui::BeginTooltip();
 		ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
@@ -252,7 +252,7 @@ void gui::Render() noexcept
 	ImGui::SetNextWindowPos({ 0, 0 });
 	ImGui::SetNextWindowSize({ WIDTH, HEIGHT });
 	ImGui::Begin(
-		"cheat-menu",
+		XorStr("cheat-menu"),
 		&exit,
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoSavedSettings |
@@ -265,14 +265,14 @@ void gui::Render() noexcept
 		if (C::Get<bool>(Vars.bTrigger)) {
 			ImGui::SameLine();
 			ImGui::Hotkey(XorStr("##Triggerkey"), &C::Get<int>(Vars.bTriggerKey), ImVec2(120, 22));
-			ImGui::SliderInt(XorStr("Delay [ms]"), &C::Get<int>(Vars.bTriggerDelay), 0, 200);
+			ImGui::SliderInt(XorStr("Delay"), &C::Get<int>(Vars.bTriggerDelay), 0, 200, "%.0fms");
 		}
 		ImGui::Checkbox(XorStr("Aimbot"), &C::Get<bool>(Vars.bAimbot));
 		if (C::Get<bool>(Vars.bAimbot)) {
 			ImGui::SameLine();
 			ImGui::Hotkey(XorStr("##Aimkey"), &C::Get<int>(Vars.bAimbotKey), ImVec2(120, 22));
-			ImGui::SliderFloat(XorStr("FOV"), &C::Get<float>(Vars.bAimbotFOV), 0.1f, 50);
-			ImGui::SliderFloat(XorStr("Smoothing"), &C::Get<float>(Vars.bAimbotSmoothing), 0.1f, 20);
+			ImGui::SliderFloat(XorStr("FOV"), &C::Get<float>(Vars.bAimbotFOV), 0.1, 30, "%.1f");
+			ImGui::SliderFloat(XorStr("Smoothing"), &C::Get<float>(Vars.bAimbotSmoothing), 1, 20);
 		}
 		ImGui::Checkbox(XorStr("Standalone RCS"), &C::Get<bool>(Vars.bRecoilControlSystem));
 		ImGui::SameLine();
@@ -281,14 +281,13 @@ void gui::Render() noexcept
 	ImGui::Separator();
 	ImGui::Checkbox(XorStr("Enable Visuals"), &C::Get<bool>(Vars.bVisuals));
 	if (C::Get<bool>(Vars.bVisuals)) {
+		ImGui::Checkbox(XorStr("Chams"), &C::Get<bool>(Vars.bChams));
 		ImGui::Checkbox(XorStr("FOV Changer"), &C::Get<bool>(Vars.bVisualsFovChanger));
 		if (C::Get<bool>(Vars.bVisualsFovChanger)) {
-			ImGui::SliderInt(XorStr("Amount"), &C::Get<int>(Vars.bVisualsFovChangerAmount), 30, 160);
+			ImGui::SliderInt(XorStr("Amount"), &C::Get<int>(Vars.bVisualsFovChangerAmount), 30, 170);
 		}
 	}
 	ImGui::Separator();
-	ImGui::Checkbox(XorStr("Chams"), &C::Get<bool>(Vars.bChams));
 	ImGui::Checkbox(XorStr("Bhop"), &C::Get<bool>(Vars.bBhop));
-
 	ImGui::End();
 }

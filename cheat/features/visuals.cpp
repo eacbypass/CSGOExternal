@@ -17,13 +17,13 @@ void CVisuals::Run()
 
 void CVisuals::FovChanger()
 {
-	const auto memory = Memory{ "csgo.exe" };
+	const auto memory = Memory{ XorStr("csgo.exe") };
 
 	
 
 	// module addresses
-	const auto client = memory.GetModuleAddress("client.dll");
-	const auto engine = memory.GetModuleAddress("engine.dll");
+	const auto client = memory.GetModuleAddress(XorStr("client.dll"));
+	const auto engine = memory.GetModuleAddress(XorStr("engine.dll"));
 
 	uintptr_t localPlayer = memory.Read<uintptr_t>(client + offset::dwEntityList);
 

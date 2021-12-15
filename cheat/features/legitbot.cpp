@@ -7,6 +7,7 @@
 #include <winuser.h>
 #include "../../Header Files/core/offsets.h"
 #include "../../Header Files/core/vector.h"
+#include "../../Header Files/core/xorstr.h"
 
 void CLegitBot::Run()
 { 
@@ -29,11 +30,11 @@ constexpr Vector3 CalculateAngle(
 void CLegitBot::Aimbot()
 {
 	// initialize memory class
-	const auto memory = Memory{ "csgo.exe" };
+	const auto memory = Memory{ XorStr("csgo.exe") };
 
 	// module addresses
-	const auto client = memory.GetModuleAddress("client.dll");
-	const auto engine = memory.GetModuleAddress("engine.dll");
+	const auto client = memory.GetModuleAddress(XorStr("client.dll"));
+	const auto engine = memory.GetModuleAddress(XorStr("engine.dll"));
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
@@ -111,10 +112,10 @@ struct Vector2
 
 
 void CLegitBot::RecoilControlSystem() {
-	const auto memory = Memory{ "csgo.exe" };
+	const auto memory = Memory{ XorStr("csgo.exe") };
 
-	const auto client = memory.GetModuleAddress("client.dll");
-	const auto engine = memory.GetModuleAddress("engine.dll");
+	const auto client = memory.GetModuleAddress(XorStr("client.dll"));
+	const auto engine = memory.GetModuleAddress(XorStr("engine.dll"));
 
 	auto oldPunch = Vector2{ };
 
@@ -160,8 +161,8 @@ void CLegitBot::RecoilControlSystem() {
 }
 
 void CLegitBot::TriggerBot() {
-	const auto memory = Memory{ "csgo.exe" };
-	const auto client = memory.GetModuleAddress("client.dll");
+	const auto memory = Memory{ XorStr("csgo.exe") };
+	const auto client = memory.GetModuleAddress(XorStr("client.dll"));
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1));
 

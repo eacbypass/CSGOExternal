@@ -14,11 +14,11 @@ struct Color
 
 void CChams::Run()
 {
-	const auto memory = Memory{ "csgo.exe" };
+	const auto memory = Memory{ XorStr("csgo.exe") };
 
 	// module addresses
-	const auto client = memory.GetModuleAddress("client.dll");
-	const auto engine = memory.GetModuleAddress("engine.dll");
+	const auto client = memory.GetModuleAddress(XorStr("client.dll"));
+	const auto engine = memory.GetModuleAddress(XorStr("engine.dll"));
 
 	constexpr const auto teamColor = Color{ 0, 0, 255 }; // @TODO: Make changable in menu
 	constexpr const auto enemyColor = Color{ 255, 0, 0 }; // @TODO: Make changable in menu

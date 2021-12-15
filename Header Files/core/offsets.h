@@ -5,7 +5,7 @@ namespace offset
 	// client
 
 	constexpr ::std::ptrdiff_t dwLocalPlayer = 0xDB458C; // updated 12/13/2021
-	constexpr ::std::ptrdiff_t dwEntityList = 0x4DCFA64; // updated 12/13/2021
+	constexpr ::std::ptrdiff_t dwEntityList = 0x4DCFA94; // updated 12/15/2021
 	constexpr ::std::ptrdiff_t dwForceAttack = 0x31FFF74; // updated 12/13/2021
 	constexpr ::std::ptrdiff_t dwForceJump = 0x527995C; // updated 12/13/2021 
 	constexpr ::std::ptrdiff_t dwClientState = 0x589FC4; // updated 12/13/2021
