@@ -31,7 +31,7 @@ int __stdcall wWinMain(
 	std::cout << std::hex << XorStr("engine.dll -> 0x") << engine << std::dec << std::endl;
 	if (!client) {
 		if (!engine) {
-			printf(XorStr("[cheat-menu] Start CSGO"));
+			printf(XorStr("[cheat-menu] Start CSGO / Run as Administrator?"));
 			Sleep(-1);
 		}
 	}
